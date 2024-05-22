@@ -7,4 +7,4 @@
 export default {
   name: 'DashboardPage',
 }
-</script>
+</script> -->
