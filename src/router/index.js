@@ -7,6 +7,11 @@ const constantRoutes = [
     component: () => import("@/views/Dashboard.vue")
   },
   {
+    path: "/lang",
+    name: "Lang",
+    component: () => import("@/views/Lang.vue")
+  },
+  {
     path: "/404",
     name: "404",
     component: () => import("@/views/404.vue")
