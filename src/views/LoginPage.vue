@@ -1,18 +1,18 @@
 <template>
     <el-container class="container">
         <div class="form-container">
-            <h2 class="title">管理後台</h2>
+            <h2 class="title">{{ $t("LoginPage.Title") }}</h2>
             <el-form ref="formRef" style="max-width: 600px" :model="form" :rules="rules" label-position="top">
-                <el-form-item label="帳號" prop="acc">
+                <el-form-item :label="$t('LoginPage.Acc')" prop="acc">
                     <el-input v-model="form.acc" @keyup.enter="onSubmit" />
                 </el-form-item>
-                <el-form-item label="密碼" prop="pwd">
+                <el-form-item :label="$t('LoginPage.Pwd')" prop="pwd">
                     <el-input v-model="form.pwd" type="password" show-password @keyup.enter="onSubmit" />
                 </el-form-item>
                 <div class="btn">
                     <el-form-item>
-                        <el-button type="primary" @click="onSubmit">登入</el-button>
-                        <el-button @click="resetForm">清除</el-button>
+                        <el-button type="primary" @click="onSubmit">{{ $t("LoginPage.Login") }}</el-button>
+                        <el-button @click="resetForm">{{ $t("LoginPage.Clear") }}</el-button>
                     </el-form-item>
                 </div>
             </el-form>
@@ -22,6 +22,9 @@
 
 <script setup>
 import { reactive, ref } from 'vue'
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const form = reactive({
     acc: '',
@@ -46,16 +49,8 @@ const resetForm = () => {
 };
 
 const rules = reactive({
-    acc: [
-        { required: true, message: '請輸入帳號', trigger: 'blur' },
-    ],
-    pwd: [
-        {
-            required: true,
-            message: '請輸入密碼',
-            trigger: 'blur',
-        },
-    ],
+    acc: [{required: true, message: t("LoginPage.RuleAcc"), trigger: 'blur'}],
+    pwd: [{required: true, message: t("LoginPage.RulePwd"), trigger: 'blur'}],
 });
 
 </script>
@@ -80,7 +75,7 @@ body {
     width: 400px;
     max-width: 600px;
     padding: 20px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 5px 5px 10px #00000075;
     border-radius: 8px;
     background-color: #f5f7f9;
 }

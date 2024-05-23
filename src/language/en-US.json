@@ -1,3 +1,12 @@
 {
-    "message": "Hello"
+    "LoginPage": {
+        "Title": "管理後台",
+        "Acc": "帳號",
+        "Pwd": "密碼",
+        "RuleAcc": "請輸入帳號",
+        "RulePwd": "請輸入密碼",
+        "Login": "登入",
+        "Clear": "清除"
+    },
+    "message": "你好"
 }
