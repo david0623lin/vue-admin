@@ -3,6 +3,11 @@ import BaseLayout from '../components/BaseLayout.vue'
 
 const routes = [
   {
+    path: '/login',
+    name: 'Login',
+    component: () => import("@/views/LoginPage.vue")
+  },
+  {
     path: '/',
     component: BaseLayout,
     children: [
