@@ -20,5 +20,6 @@ const i18n = createI18n({
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 
+import * as Icons from '@element-plus/icons-vue'
 
-createApp(App).use(router).use(i18n).use(ElementPlus).mount('#app')
+createApp(App).use(router).use(i18n).use(ElementPlus).use(Icons).mount('#app')
