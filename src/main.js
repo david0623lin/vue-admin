@@ -1,3 +1,4 @@
+import { createPinia } from 'pinia';
 import { createApp } from 'vue'
 import App from './App.vue'
 
@@ -22,4 +23,9 @@ import 'element-plus/dist/index.css'
 
 import * as Icons from '@element-plus/icons-vue'
 
-createApp(App).use(router).use(i18n).use(ElementPlus).use(Icons).mount('#app')
+const pinia = createPinia();
+
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate' // pinia 持久化
+pinia.use(piniaPluginPersistedstate)
+
+createApp(App).use(pinia).use(router).use(i18n).use(ElementPlus).use(Icons).mount('#app')

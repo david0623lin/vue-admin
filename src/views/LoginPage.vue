@@ -22,9 +22,15 @@
 </template>
 
 <script setup>
-import { reactive, ref } from 'vue'
 import LangSelect from "../components/LangSelect.vue"
+import axiosInstance from '@/api/mock';
+import { reactive, ref } from 'vue'
 import { useI18n } from 'vue-i18n';
+import { ElMessage } from 'element-plus'
+import { useRouter } from 'vue-router';
+import { useRouterStore } from '../utils/store.js';
+const routerStore = useRouterStore();
+const router = useRouter();
 
 // 語系
 const { t } = useI18n();
@@ -39,10 +45,41 @@ const formRef = ref(null);
 
 const handleLogin = async () => {
     try {
+        // 檢查參數
         await formRef.value.validate();
-        console.log('submit!');
+
+        // 登入
+        const response = await axiosInstance.post('/login', {
+            username: form.acc,
+            password: form.pwd
+        });
+
+        if (response.data.code == 0) {
+            // 取得路由列表
+            handleGetRoutes()
+            // 跳轉首頁
+            router.push({ name: 'Dashboard' });
+        } else {
+            ElMessage.error(response.data.message)
+        }
     } catch (error) {
-        console.error('表单验证失败:', error);
+        console.log(error)
+    }
+};
+
+const handleGetRoutes = async () => {
+    try {
+        const response = await axiosInstance.get('/routes');
+
+        if (response.data.code == 0) {
+            // 寫到 快取
+            console.log(response.data)
+            routerStore.setRoutes(response.data.result);
+        } else {
+            ElMessage.error(response.data.message)
+        }
+    } catch (error) {
+        console.log(error)
     }
 }
 

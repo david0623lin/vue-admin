@@ -1,6 +1,5 @@
 <template>
     <el-container class="layout-container">
-
         <!-- 左側選單 -->
         <el-aside width="200px">
             <LayoutMenu />
