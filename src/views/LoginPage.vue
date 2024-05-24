@@ -2,17 +2,18 @@
     <el-container class="container">
         <div class="form-container">
             <h2 class="title">{{ $t("LoginPage.Title") }}</h2>
+            <LangSelect class="lang-select" />
             <el-form ref="formRef" style="max-width: 600px" :model="form" :rules="rules" label-position="top">
                 <el-form-item :label="$t('LoginPage.Acc')" prop="acc">
-                    <el-input v-model="form.acc" @keyup.enter="onSubmit" />
+                    <el-input v-model="form.acc" @keyup.enter="onLogin" />
                 </el-form-item>
                 <el-form-item :label="$t('LoginPage.Pwd')" prop="pwd">
-                    <el-input v-model="form.pwd" type="password" show-password @keyup.enter="onSubmit" />
+                    <el-input v-model="form.pwd" type="password" show-password @keyup.enter="onLogin" />
                 </el-form-item>
                 <div class="btn">
                     <el-form-item>
-                        <el-button type="primary" @click="onSubmit">{{ $t("LoginPage.Login") }}</el-button>
-                        <el-button @click="resetForm">{{ $t("LoginPage.Clear") }}</el-button>
+                        <el-button type="primary" @click="onLogin">{{ $t("LoginPage.Login") }}</el-button>
+                        <el-button @click="onClear">{{ $t("LoginPage.Clear") }}</el-button>
                     </el-form-item>
                 </div>
             </el-form>
@@ -22,10 +23,13 @@
 
 <script setup>
 import { reactive, ref } from 'vue'
+import LangSelect from "../components/LangSelect.vue"
 import { useI18n } from 'vue-i18n';
 
+// 語系
 const { t } = useI18n();
 
+// 表單
 const form = reactive({
     acc: '',
     pwd: '',
@@ -33,7 +37,7 @@ const form = reactive({
 
 const formRef = ref(null);
 
-const onSubmit = async () => {
+const onLogin = async () => {
     try {
         await formRef.value.validate();
         console.log('submit!');
@@ -42,15 +46,16 @@ const onSubmit = async () => {
     }
 }
 
-const resetForm = () => {
+const onClear = () => {
     form.acc = '';
     form.pwd = '';
     formRef.value.resetFields();
 };
 
+// 規則
 const rules = reactive({
-    acc: [{required: true, message: t("LoginPage.RuleAcc"), trigger: 'blur'}],
-    pwd: [{required: true, message: t("LoginPage.RulePwd"), trigger: 'blur'}],
+    acc: [{ required: true, message: t("LoginPage.RuleAcc"), trigger: 'blur' }],
+    pwd: [{ required: true, message: t("LoginPage.RulePwd"), trigger: 'blur' }],
 });
 
 </script>
@@ -61,6 +66,11 @@ body {
     margin: 0;
     height: 100%;
     overflow: hidden;
+}
+
+.lang-select {
+    margin-top: 25px;
+    text-align: right;
 }
 
 .container {
