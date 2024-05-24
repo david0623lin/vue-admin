@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import BaseLayout from '../components/BaseLayout.vue'
+import LayoutBase from '../components/LayoutBase.vue'
 
 const routes = [
   {
@@ -9,7 +9,7 @@ const routes = [
   },
   {
     path: '/',
-    component: BaseLayout,
+    component: LayoutBase,
     children: [
       {
         path: '',
