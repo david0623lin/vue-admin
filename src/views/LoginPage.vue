@@ -5,15 +5,15 @@
             <LangSelect class="lang-select" />
             <el-form ref="formRef" style="max-width: 600px" :model="form" :rules="rules" label-position="top">
                 <el-form-item :label="$t('LoginPage.Acc')" prop="acc">
-                    <el-input v-model="form.acc" @keyup.enter="onLogin" />
+                    <el-input v-model="form.acc" @keyup.enter="handleLogin" />
                 </el-form-item>
                 <el-form-item :label="$t('LoginPage.Pwd')" prop="pwd">
-                    <el-input v-model="form.pwd" type="password" show-password @keyup.enter="onLogin" />
+                    <el-input v-model="form.pwd" type="password" show-password @keyup.enter="handleLogin" />
                 </el-form-item>
                 <div class="btn">
                     <el-form-item>
-                        <el-button type="primary" @click="onLogin">{{ $t("LoginPage.Login") }}</el-button>
-                        <el-button @click="onClear">{{ $t("LoginPage.Clear") }}</el-button>
+                        <el-button type="primary" @click="handleLogin">{{ $t("LoginPage.Login") }}</el-button>
+                        <el-button @click="handleClear">{{ $t("LoginPage.Clear") }}</el-button>
                     </el-form-item>
                 </div>
             </el-form>
@@ -37,7 +37,7 @@ const form = reactive({
 
 const formRef = ref(null);
 
-const onLogin = async () => {
+const handleLogin = async () => {
     try {
         await formRef.value.validate();
         console.log('submit!');
@@ -46,7 +46,7 @@ const onLogin = async () => {
     }
 }
 
-const onClear = () => {
+const handleClear = () => {
     form.acc = '';
     form.pwd = '';
     formRef.value.resetFields();
