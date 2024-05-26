@@ -28,12 +28,11 @@ import { reactive, ref } from 'vue'
 import { useI18n } from 'vue-i18n';
 import { ElMessage } from 'element-plus'
 import { useRouter } from 'vue-router';
-import { useRouterStore } from '../utils/store.js';
-const routerStore = useRouterStore();
-const router = useRouter();
+import { useTokenStore } from '../utils/pinia/StoreToken';
 
-// 語系
-const { t } = useI18n();
+const router = useRouter();
+const tokenStore = useTokenStore();
+const { t } = useI18n(); // 語系
 
 // 表單
 const form = reactive({
@@ -55,10 +54,14 @@ const handleLogin = async () => {
         });
 
         if (response.data.code == 0) {
-            // 取得路由列表
-            handleGetRoutes()
+            // 寫入快取
+            tokenStore.setSessionID(response.data.result["sessionID"])
+
+            const permissions = await handleGetPermissions();
+            tokenStore.setPermissions(permissions)
+
             // 跳轉首頁
-            router.push({ name: 'Dashboard' });
+            router.push({path: '/dashboard'});
         } else {
             ElMessage.error(response.data.message)
         }
@@ -67,14 +70,12 @@ const handleLogin = async () => {
     }
 };
 
-const handleGetRoutes = async () => {
+const handleGetPermissions = async () => {
     try {
-        const response = await axiosInstance.get('/routes');
+        const response = await axiosInstance.get('/permissions');
 
         if (response.data.code == 0) {
-            // 寫到 快取
-            console.log(response.data)
-            routerStore.setRoutes(response.data.result);
+            return response.data.result
         } else {
             ElMessage.error(response.data.message)
         }
