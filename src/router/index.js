@@ -14,11 +14,6 @@ const routes = [
     component: () => import("@/views/404.vue")
   },
   {
-    path: "/:pathMatch(.*)*",
-    redirect: "/404",
-    hidden: true
-  },
-  {
     path: '/dashboard',
     name: '首頁',
     hidden: true,
@@ -35,20 +30,24 @@ const routes = [
     path: '/example',
     name: '範例',
     component: LayoutBase,
+    redirect: '/example',
     children: [
       {
-        path: '/form',
+        path: 'form',
         name: '表單',
-        redirect: '/form',
-        component: () => import("@/views/Dashboard.vue")
+        component: () => import("@/views/FromPage.vue")
       },
       {
-        path: '/table',
+        path: 'table',
         name: '表格',
-        redirect: '/table',
         component: () => import("@/views/Dashboard.vue")
       },
     ],
+  },
+  {
+    path: "/:pathMatch(.*)*",
+    redirect: "/404",
+    hidden: true
   },
 ]
 

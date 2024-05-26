@@ -5,16 +5,10 @@
             active-background-color="#3375b9">
             <template v-for="item in menuItems" :key="item.index">
                 <el-menu-item v-if="!item.children" :index="item.index" @click="handleMenuClick(item.index)">
-                    <el-icon>
-                        <component :is="item.icon" />
-                    </el-icon>
                     <span>{{ item.title }}</span>
                 </el-menu-item>
                 <el-sub-menu v-else :index="item.index">
                     <template #title>
-                        <el-icon>
-                            <component :is="item.icon" />
-                        </el-icon>
                         <span>{{ item.title }}</span>
                     </template>
                     <el-menu-item v-for="child in item.children" :key="child.index" :index="child.index"
@@ -33,7 +27,7 @@ import { useRouter } from 'vue-router';
 
 const router = useRouter();
 const menuItems = ref([]);
-const defaultActive = '/dashboard'; // 預設 Menu Item
+const defaultActive = ref('/dashboard'); // 預設 Menu Item
 
 const handleMenuClick = (index) => {
     router.push(index);
@@ -60,7 +54,7 @@ router.options.routes.forEach(route => {
             menuItem.children = []
             route.children.forEach(child => {
                 const childItem = {
-                    index: `${route.path === '/' ? '' : route.path}/${child.path}`,
+                    index: route.path + '/' + child.path,
                     title: child.name
                 };
                 menuItem.children.push(childItem);

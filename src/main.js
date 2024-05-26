@@ -21,11 +21,9 @@ const i18n = createI18n({
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 
-import * as Icons from '@element-plus/icons-vue'
-
 const pinia = createPinia();
 
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate' // pinia 持久化
 pinia.use(piniaPluginPersistedstate)
 
-createApp(App).use(pinia).use(router).use(i18n).use(ElementPlus).use(Icons).mount('#app')
+createApp(App).use(pinia).use(router).use(i18n).use(ElementPlus).mount('#app')
