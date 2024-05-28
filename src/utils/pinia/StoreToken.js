@@ -4,7 +4,8 @@ export const useTokenStore = defineStore({
   id: "token",
   state: () => ({
     sessionID: "",
-    permissions: {}
+    permissions: {},
+    tabs: []
   }),
   actions: {
     setSessionID(sessionID) {
@@ -12,7 +13,13 @@ export const useTokenStore = defineStore({
     },
     setPermissions(permissions) {
       this.permissions = permissions;
-    }
+    },
+    setTabs(tabs) {
+      this.tabs = tabs;
+    },
+    delTabs(tabIndex) {
+      this.tabs.splice(tabIndex, 1);
+    },
   },
   getters: {
     getSessionID() {
@@ -20,6 +27,9 @@ export const useTokenStore = defineStore({
     },
     getPermissions() {
       return this.permissions;
-    }
+    },
+    getTabs() {
+      return this.tabs;
+    },
   }
 });
