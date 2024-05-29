@@ -1,4 +1,14 @@
 {
+    "Router": {
+        "Login": "Login",
+        "Dashboard": "Dashboard",
+        "Example": "Example",
+        "Form": "Form",
+        "Table": "Table"
+    },
+    "Menu": {
+        "Title": "Example Template"
+    },
     "LoginPage": {
         "Title": "Admin Console",
         "Acc": "Account",

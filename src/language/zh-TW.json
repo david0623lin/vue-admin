@@ -1,4 +1,14 @@
 {
+    "Router": {
+        "Login": "登入",
+        "Dashboard": "首頁",
+        "Example": "範例",
+        "Form": "表單",
+        "Table": "表格"
+    },
+    "Menu": {
+        "Title": "範例樣板"
+    },
     "LoginPage": {
         "Title": "管理後台",
         "Acc": "帳號",

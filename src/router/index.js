@@ -1,10 +1,10 @@
 import { createRouter, createWebHistory } from "vue-router";
-import LayoutBase from '../components/LayoutBase.vue'
+import LayoutComponent from '../components/LayoutComponent.vue'
 
 const routes = [
   {
     path: '/login',
-    name: '登入',
+    name: 'Login',
     hidden: true,
     component: () => import("@/views/LoginPage.vue")
   },
@@ -15,31 +15,30 @@ const routes = [
   },
   {
     path: '/dashboard',
-    name: '首頁',
-    hidden: true,
-    component: LayoutBase,
+    name: 'Dashboard',
+    component: LayoutComponent,
     children: [
       {
-        path: '/dashboard',
-        name: '首頁',
+        path: 'dashboard',
+        name: 'Dashboard',
         component: () => import("@/views/Dashboard.vue")
       },
     ],
   },
   {
     path: '/example',
-    name: '範例',
-    component: LayoutBase,
+    name: 'Example',
+    component: LayoutComponent,
     redirect: '/example',
     children: [
       {
         path: 'form',
-        name: '表單',
+        name: 'Form',
         component: () => import("@/views/FromPage.vue")
       },
       {
         path: 'table',
-        name: '表格',
+        name: 'Table',
         component: () => import("@/views/Dashboard.vue")
       },
     ],
