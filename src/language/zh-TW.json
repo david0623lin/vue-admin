@@ -1,21 +1,25 @@
 {
-    "Router": {
-        "Login": "登入",
-        "Dashboard": "首頁",
-        "Example": "範例",
-        "Form": "表單",
-        "Table": "表格"
-    },
-    "Menu": {
-        "Title": "範例樣板"
-    },
-    "LoginPage": {
-        "Title": "管理後台",
-        "Acc": "帳號",
-        "Pwd": "密碼",
-        "RuleAcc": "請輸入帳號",
-        "RulePwd": "請輸入密碼",
-        "Login": "登入",
-        "Clear": "清除"
-    }
+  "404": {
+    "oops": "噢不!",
+    "message": "請檢查您輸入的網址是否正確。"
+  },
+  "Router": {
+    "Login": "登入",
+    "Dashboard": "首頁",
+    "Example": "範例",
+    "Form": "表單",
+    "Table": "表格"
+  },
+  "Menu": {
+    "Title": "範例樣板"
+  },
+  "LoginPage": {
+    "Title": "管理後台",
+    "Acc": "帳號",
+    "Pwd": "密碼",
+    "RuleAcc": "請輸入帳號",
+    "RulePwd": "請輸入密碼",
+    "Login": "登入",
+    "Clear": "清除"
+  }
 }

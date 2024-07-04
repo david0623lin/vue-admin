@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from "vue-router";
+import { createRouter, createWebHashHistory } from "vue-router";
 import LayoutComponent from '../components/LayoutComponent.vue'
 
 const routes = [
@@ -29,7 +29,7 @@ const routes = [
     path: '/example',
     name: 'Example',
     component: LayoutComponent,
-    redirect: '/example',
+    // redirect: '/example',
     children: [
       {
         path: 'form',
@@ -51,9 +51,8 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHistory(),
-  scrollBehavior: () => ({ y: 0 }),
-  routes: routes
+  history: createWebHashHistory(),
+  routes
 });
 
 export default router;

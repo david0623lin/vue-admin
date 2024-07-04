@@ -7,10 +7,7 @@
                 <el-menu background-color="#1d3043" :default-active="menuActive" text-color="#fff"
                     active-background-color="#3375b9">
                     <template v-for="item in menuItems" :key="item.path">
-                        <el-menu-item v-if="!item.children" :index="item.path" @click="handleMenuClick(item.path)">
-                            <span>{{ $t("Router." + item.name) }}</span>
-                        </el-menu-item>
-                        <el-sub-menu v-else :index="item.path">
+                        <el-sub-menu :index="item.path">
                             <template #title>
                                 <span>{{ $t("Router." + item.name) }}</span>
                             </template>
@@ -36,7 +33,7 @@
 
             <!-- 中間主畫面 -->
             <el-tabs v-model="tabsActive" class="tabs" @tab-remove="handleTabRemove" @tab-click="handleTabClick">
-                <el-tab-pane v-for="(tab, k) in tabsItems" :key="k" :label="$t('Router.'+tab.name)" :name="tab.name" :closable="true">
+                <el-tab-pane v-for="(tab, k) in tabsItems" :key="k" :label="$t('Router.'+tab.name)" :name="tab.name" :closable="tab.del">
                     <el-main>
                         <router-view />
                     </el-main>
@@ -80,9 +77,6 @@ export default {
                 let children = []
 
                 route.children.forEach(child => {
-                    if (route.name === child.name) {
-                        return
-                    }
                     const childItem = {
                         path: route.path + '/' + child.path,
                         name: child.name,
@@ -115,9 +109,12 @@ export default {
                 tabsItems.value.push({
                     name: newRoute.name,
                     path: newRoute.path,
+                    del: true
                 });
                 tokenStore.setTabs(tabsItems.value);
             }
+            // 切換 menu 到選中的
+            menuActive.value = newRoute.path
             // 切換 tab 到選中的
             tabsActive.value = newRoute.name;
         });
@@ -140,6 +137,9 @@ export default {
                 if (tab.name === tabName) {
                     tabsItems.splice(index, 1);
                     tokenStore.setTabs(tabsItems)
+                    router.push({ path: tabsItems[0].path });
+                    tabsActive.value = tabsItems[0].name;
+                    return
                 }
             });
         };

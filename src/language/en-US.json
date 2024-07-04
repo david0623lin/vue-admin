@@ -1,21 +1,25 @@
 {
-    "Router": {
-        "Login": "Login",
-        "Dashboard": "Dashboard",
-        "Example": "Example",
-        "Form": "Form",
-        "Table": "Table"
-    },
-    "Menu": {
-        "Title": "Example Template"
-    },
-    "LoginPage": {
-        "Title": "Admin Console",
-        "Acc": "Account",
-        "Pwd": "Password",
-        "RuleAcc": "Pleace enter account",
-        "RulePwd": "Pleace enter password",
-        "Login": "Login",
-        "Clear": "Clear"
-    }
+  "404": {
+    "oops": "OOPS!",
+    "message": "Please check that the URL you entered is correct."
+  },
+  "Router": {
+    "Login": "Login",
+    "Dashboard": "Dashboard",
+    "Example": "Example",
+    "Form": "Form",
+    "Table": "Table"
+  },
+  "Menu": {
+    "Title": "Example Template"
+  },
+  "LoginPage": {
+    "Title": "Admin Console",
+    "Acc": "Account",
+    "Pwd": "Password",
+    "RuleAcc": "Pleace enter account",
+    "RulePwd": "Pleace enter password",
+    "Login": "Login",
+    "Clear": "Clear"
+  }
 }

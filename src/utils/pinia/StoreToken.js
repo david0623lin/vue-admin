@@ -2,10 +2,18 @@ import { defineStore } from "pinia";
 
 export const useTokenStore = defineStore({
   id: "token",
+  persist: true, // 這個配置啟用持久化
   state: () => ({
     sessionID: "",
     permissions: {},
-    tabs: []
+    tabs: [
+      // 固定首頁在第一個
+      {
+        name: "Dashboard",
+        path: "/dashboard/dashboard",
+        del: false
+      }
+    ]
   }),
   actions: {
     setSessionID(sessionID) {
